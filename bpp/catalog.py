@@ -3,17 +3,6 @@ import numpy as np
 from galcheat.utilities import mag2counts
 
 
-def validate_catalog(catalog: dict):
-    """Ensure table is valid and has correct column names."""
-    required = {"flux", "fluxnorm_d", "a_d", "a_b", "b_b", "b_d", "beta", "ra", "dec"}
-    n_rows = len(catalog["flux"])
-    for key, value in catalog.items():
-        assert value.shape == (n_rows,), f"Column {key} has wrong shape."
-    if not required.issubset(set(catalog.keys())):
-        raise ValueError(f"Catalog does not have required columns: {required}")
-    if not n_rows > 0:
-        raise ValueError("Catalog has no rows.")
-
 
 def create_uniform_catalog(
     n_rows: int = 1,
